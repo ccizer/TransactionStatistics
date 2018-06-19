@@ -1,7 +1,7 @@
 package com.ccizer.transactionsstatistics.validator;
 
 import com.ccizer.transactionsstatistics.exception.TransactionValidationException;
-import com.ccizer.transactionsstatistics.model.request.TransactionCreateRequest;
+import com.ccizer.transactionsstatistics.model.request.TransactionRequest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,24 +10,24 @@ import java.time.Instant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-public class TransactionCreateRequestValidatorTest {
+public class TransactionRequestValidatorTest {
 
-    private TransactionCreateRequestValidator transactionCreateRequestValidator;
+    private TransactionRequestValidator transactionRequestValidator;
 
     @Before
     public void setUp() {
-        transactionCreateRequestValidator = new TransactionCreateRequestValidator();
+        transactionRequestValidator = new TransactionRequestValidator();
     }
 
     @Test
     public void should_validate_transaction_create_request() {
         //given
-        TransactionCreateRequest transactionCreateRequest = new TransactionCreateRequest();
-        transactionCreateRequest.setAmount(12.3);
-        transactionCreateRequest.setTimestamp(Instant.now().toEpochMilli());
+        TransactionRequest transactionRequest = new TransactionRequest();
+        transactionRequest.setAmount(12.3);
+        transactionRequest.setTimestamp(Instant.now().toEpochMilli());
 
         //when
-        Throwable throwable = catchThrowable(() -> transactionCreateRequestValidator.validateRequest(transactionCreateRequest));
+        Throwable throwable = catchThrowable(() -> transactionRequestValidator.validateRequest(transactionRequest));
 
         //then
         assertThat(throwable).isNull();
@@ -36,12 +36,12 @@ public class TransactionCreateRequestValidatorTest {
     @Test
     public void should_throw_exception_when_timestamp_is_older_than_sixty_seconds() {
         //given
-        TransactionCreateRequest transactionCreateRequest = new TransactionCreateRequest();
-        transactionCreateRequest.setAmount(12.3);
-        transactionCreateRequest.setTimestamp(1478192204000L);
+        TransactionRequest transactionRequest = new TransactionRequest();
+        transactionRequest.setAmount(12.3);
+        transactionRequest.setTimestamp(Instant.now().minusSeconds(100).toEpochMilli());
 
         //when
-        Throwable throwable = catchThrowable(() -> transactionCreateRequestValidator.validateRequest(transactionCreateRequest));
+        Throwable throwable = catchThrowable(() -> transactionRequestValidator.validateRequest(transactionRequest));
 
         //then
         assertThat(throwable).isNotNull();

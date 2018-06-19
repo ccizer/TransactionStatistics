@@ -1,7 +1,7 @@
 package com.ccizer.transactionsstatistics.controller;
 
 import com.ccizer.transactionsstatistics.manager.StatisticsManager;
-import com.ccizer.transactionsstatistics.model.response.StatisticsRetrieveResponse;
+import com.ccizer.transactionsstatistics.model.response.StatisticsResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,7 +18,7 @@ public class StatisticsController {
 
     @GetMapping("/statistics")
     @ResponseStatus(HttpStatus.OK)
-    public StatisticsRetrieveResponse retrieveStatistics() {
+    public StatisticsResponse retrieveStatistics() {
         return statisticsManager.retrieveStatistics();
     }
 }

@@ -1,7 +1,7 @@
 package com.ccizer.transactionsstatistics.controller;
 
 import com.ccizer.transactionsstatistics.manager.TransactionManager;
-import com.ccizer.transactionsstatistics.model.request.TransactionCreateRequest;
+import com.ccizer.transactionsstatistics.model.request.TransactionRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,7 @@ public class TransactionController {
 
     @PostMapping("/transactions")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTransaction(@RequestBody TransactionCreateRequest transactionCreateRequest) {
-        transactionManager.storeTransactionRequest(transactionCreateRequest);
+    public void createTransaction(@RequestBody TransactionRequest transactionRequest) {
+        transactionManager.storeTransactionRequest(transactionRequest);
     }
 }

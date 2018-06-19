@@ -1,6 +1,6 @@
 package com.ccizer.transactionsstatistics.model.response;
 
-public class StatisticsRetrieveResponse {
+public class StatisticsResponse {
 
     private Double sum;
     private Double avg;

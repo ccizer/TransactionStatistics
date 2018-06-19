@@ -3,7 +3,7 @@ package com.ccizer.transactionsstatistics.model.vo;
 public class TransactionVo {
 
     private Double amount;
-    private Long timestamp;
+    private Long time;
 
     public Double getAmount() {
         return amount;
@@ -13,11 +13,11 @@ public class TransactionVo {
         this.amount = amount;
     }
 
-    public Long getTimestamp() {
-        return timestamp;
+    public Long getTime() {
+        return time;
     }
 
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

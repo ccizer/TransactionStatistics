@@ -1,6 +1,6 @@
 package com.ccizer.transactionsstatistics.model.request;
 
-public class TransactionCreateRequest {
+public class TransactionRequest {
 
     private Double amount;
     private Long timestamp;
