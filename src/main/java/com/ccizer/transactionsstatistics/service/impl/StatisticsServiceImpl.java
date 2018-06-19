@@ -8,8 +8,8 @@ import java.time.Instant;
 import java.util.DoubleSummaryStatistics;
 import java.util.Map;
 
-import static com.ccizer.transactionsstatistics.constants.TransactionConstants.MAP_OF_TRANSACTIONS;
-import static com.ccizer.transactionsstatistics.constants.TransactionConstants.SIXTY_SECONDS;
+import static com.ccizer.transactionsstatistics.constant.TransactionConstants.MAP_OF_TRANSACTIONS;
+import static com.ccizer.transactionsstatistics.constant.TransactionConstants.SIXTY_SECONDS;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {

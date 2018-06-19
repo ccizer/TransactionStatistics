@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.time.Instant;
 
-import static com.ccizer.transactionsstatistics.constants.TransactionConstants.MAP_OF_TRANSACTIONS;
+import static com.ccizer.transactionsstatistics.constant.TransactionConstants.MAP_OF_TRANSACTIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StatisticsControllerIT extends BaseWebIT {
@@ -57,6 +57,18 @@ public class StatisticsControllerIT extends BaseWebIT {
 
         transactionRequest.setTimestamp(Instant.now().toEpochMilli());
         transactionRequest.setAmount(30.0);
+
+        testRestTemplate.postForEntity(transactionUrl, transactionRequest, null);
+
+        //Transaction which is older than 60 seconds
+        transactionRequest.setTimestamp(Instant.now().minusSeconds(100).toEpochMilli());
+        transactionRequest.setAmount(40.0);
+
+        testRestTemplate.postForEntity(transactionUrl, transactionRequest, null);
+
+        //Transaction which is newer than current time
+        transactionRequest.setTimestamp(Instant.now().plusSeconds(100).toEpochMilli());
+        transactionRequest.setAmount(50.0);
 
         testRestTemplate.postForEntity(transactionUrl, transactionRequest, null);
     }

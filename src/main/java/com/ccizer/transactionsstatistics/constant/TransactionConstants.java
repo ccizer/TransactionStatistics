@@ -1,4 +1,4 @@
-package com.ccizer.transactionsstatistics.constants;
+package com.ccizer.transactionsstatistics.constant;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;

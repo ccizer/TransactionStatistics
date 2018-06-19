@@ -34,6 +34,22 @@ public class TransactionRequestValidatorTest {
     }
 
     @Test
+    public void should_throw_exception_when_timestamp_is_empty() {
+        //given
+        TransactionRequest transactionRequest = new TransactionRequest();
+        transactionRequest.setAmount(12.3);
+
+        //when
+        Throwable throwable = catchThrowable(() -> transactionRequestValidator.validateRequest(transactionRequest));
+
+        //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable).isInstanceOf(TransactionValidationException.class);
+        TransactionValidationException transactionValidationException = (TransactionValidationException) throwable;
+        assertThat(transactionValidationException.getMessage()).isEqualTo("Transaction timestamp cannot be empty");
+    }
+
+    @Test
     public void should_throw_exception_when_timestamp_is_older_than_sixty_seconds() {
         //given
         TransactionRequest transactionRequest = new TransactionRequest();
@@ -48,5 +64,21 @@ public class TransactionRequestValidatorTest {
         assertThat(throwable).isInstanceOf(TransactionValidationException.class);
         TransactionValidationException transactionValidationException = (TransactionValidationException) throwable;
         assertThat(transactionValidationException.getMessage()).isEqualTo("Transaction timestamp is older than 60 seconds");
+    }
+
+    @Test
+    public void should_throw_exception_when_amount_is_empty() {
+        //given
+        TransactionRequest transactionRequest = new TransactionRequest();
+        transactionRequest.setTimestamp(Instant.now().toEpochMilli());
+
+        //when
+        Throwable throwable = catchThrowable(() -> transactionRequestValidator.validateRequest(transactionRequest));
+
+        //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable).isInstanceOf(TransactionValidationException.class);
+        TransactionValidationException transactionValidationException = (TransactionValidationException) throwable;
+        assertThat(transactionValidationException.getMessage()).isEqualTo("Transaction amount cannot be empty");
     }
 }

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.time.Instant;
 
-import static com.ccizer.transactionsstatistics.constants.TransactionConstants.MAP_OF_TRANSACTIONS;
+import static com.ccizer.transactionsstatistics.constant.TransactionConstants.MAP_OF_TRANSACTIONS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StatisticsServiceImplTest {
